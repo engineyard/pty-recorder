@@ -1,10 +1,10 @@
-= PTYRecorder
+# PTY::Recorder
 
 Run a fully interactive command in a PTY.
 
 With this library you can run any unix command, hook the input and output of the command to $stdin and $stdout, and also record the input and output as it happens.
 
-== Usage
+## Usage
 
 Basic command running:
 
@@ -13,10 +13,3 @@ Basic command running:
     puts "You typed:"
     puts inlog.inspect
 
-Controlling the process yourself.
-
-
-    pid = fork do
-      PTYRecorder.spawn('irb --simple-prompt', inlog: inlog) # blocks until user exits irb
-      exit!
-    end

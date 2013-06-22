@@ -4,25 +4,24 @@ describe PTY::Recorder do
   TEST_TIMEOUT = 20
 
   before do
-    @stdin_reader, @stdin = IO.pipe
+    @stdin_reader, @stdin   = IO.pipe
     @stdout, @stdout_writer = IO.pipe
-    @inlog, @inlog_writer = IO.pipe
+    @inlog, @inlog_writer   = IO.pipe
     @outlog, @outlog_writer = IO.pipe
 
     @command = "irb --simple-prompt"
-    @recorder = PTY::Recorder.new( @command, {
-      stdin: @stdin_reader,
-      stdout: @stdout_writer,
-      inlog: @inlog_writer,
-      outlog: @outlog_writer
-    })
 
     child do
       @stdin.close
       @stdout.close
       @inlog.close
       @outlog.close
-      @recorder.call
+      PTY::Recorder.spawn(@command, {
+        stdin:  @stdin_reader,
+        stdout: @stdout_writer,
+        inlog:  @inlog_writer,
+        outlog: @outlog_writer
+      })
     end
 
     @stdin_reader.close
