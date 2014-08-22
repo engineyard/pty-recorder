@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.authors = ["Martin Emde"]
   s.email = "cloud-engineering@engineyard.com"
   s.homepage = "http://github.com/engineyard/pty-recorder"
+  s.license = 'MIT'
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~>2.0'
